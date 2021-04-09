@@ -1,34 +1,42 @@
-from builtins import object
+# DJANGO REST METHOD
+from rest_framework import serializers
+from .models import Wine
 
+class WineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wine
+        fields = ['id','wine_name', 'price', 'varietal', 'description']
 
-#added comment 
+# MANUAL METHOD
 
-class WineSerializer(object):
-    def __init__(self, body):
-        self.body = body
+# from builtins import object
 
-    @property
-    def all_wines(self):
-        output = {'wines': []}
+# class WineSerializer(object):
+#     def __init__(self, body):
+#         self.body = body
 
-        for wine in self.body:
-            wine_details = {
-                'id': wine.id,
-                'wine_name': wine.wine_name,
-                'price': wine.price,
-                'varietal': wine.varietal,
-                'description': wine.description
-            }
-            output['wines'].append(wine_details)
+#     @property
+#     def all_wines(self):
+#         output = {'wines': []}
 
-        return output
+#         for wine in self.body:
+#             wine_details = {
+#                 'id': wine.id,
+#                 'wine_name': wine.wine_name,
+#                 'price': wine.price,
+#                 'varietal': wine.varietal,
+#                 'description': wine.description
+#             }
+#             output['wines'].append(wine_details)
 
-    @property
-    def wine_detail(self):
-        return {
-            'id': self.body.id,
-            'wine_name': self.body.wine_name,
-            'price': self.body.price,
-            'varietal': self.body.varietal,
-            'description': self.body.description
-        }
+#         return output
+
+#     @property
+#     def wine_detail(self):
+#         return {
+#             'id': self.body.id,
+#             'wine_name': self.body.wine_name,
+#             'price': self.body.price,
+#             'varietal': self.body.varietal,
+#             'description': self.body.description
+#         }
